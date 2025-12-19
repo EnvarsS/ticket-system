@@ -2,14 +2,16 @@ services:
   events-db:
     image: mysql:latest
     container_name: events-db
+    restart: always
     environment:
-      MYSQL_USER: events_user
-      MYSQL_ROOT_PASSWORD: events_password
-      MYSQL_DATABASE: events_db
+      - MYSQL_ROOT_PASSWORD=events_password
+      - MYSQL_USER=events_user
+      - MYSQL_DATABASE=events_db
+      - MYSQL_PASSWORD=events_password
     ports:
-        - "3306:3306"
+      - "3306:3306"
     volumes:
-        - events-db-data:/var/lib/mysql
+      - events_data:/var/lib/mysql
 
 volumes:
-    events-db-data:
+    events_data:
