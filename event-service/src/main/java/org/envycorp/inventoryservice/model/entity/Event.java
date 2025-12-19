@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name = "events")
 @Data
@@ -29,6 +31,10 @@ public class Event {
     @NotNull
     @Column(name = "available_capacity", nullable = false)
     private Long availableCapacity;
+
+    @NotNull
+    @Column(name = "date", nullable = false)
+    private LocalDate date;
 
     @NotNull
     @Column(name = "venue_id", nullable = false)

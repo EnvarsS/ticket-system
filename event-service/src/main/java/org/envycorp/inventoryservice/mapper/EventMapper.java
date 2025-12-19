@@ -9,6 +9,7 @@ public class EventMapper {
                 event.getId(),
                 event.getName(),
                 event.getAvailableCapacity(),
+                event.getDate().toString(),
                 event.getVenueId()
         );
     }
