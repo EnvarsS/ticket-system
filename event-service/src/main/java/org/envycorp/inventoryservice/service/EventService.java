@@ -1,5 +1,6 @@
 package org.envycorp.inventoryservice.service;
 
+import org.envycorp.inventoryservice.exception.EventNotFoundException;
 import org.envycorp.inventoryservice.mapper.EventMapper;
 import org.envycorp.inventoryservice.model.entity.Event;
 import org.envycorp.inventoryservice.model.response.EventResponseDTO;
@@ -19,5 +20,11 @@ public class EventService {
     public List<EventResponseDTO> getAllEvents() {
          List<Event> events = eventRepository.findAll();
          return events.stream().map(EventMapper::toDTO).toList();
+    }
+
+    public EventResponseDTO getEvent(Long id) {
+        Event event = eventRepository.findById(id).orElseThrow(() -> new EventNotFoundException("Not found event with id " + id));
+
+        return EventMapper.toDTO(event);
     }
 }
