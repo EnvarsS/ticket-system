@@ -1,0 +1,15 @@
+services:
+  events-db:
+    image: mysql:latest
+    container_name: events-db
+    environment:
+      MYSQL_USER: events_user
+      MYSQL_ROOT_PASSWORD: mysql_password
+      MYSQL_DATABASE: events_db
+    ports:
+        - "3306:3306"
+    volumes:
+        - events-db-data:/var/lib/mysql
+
+volumes:
+    events-db-data:
