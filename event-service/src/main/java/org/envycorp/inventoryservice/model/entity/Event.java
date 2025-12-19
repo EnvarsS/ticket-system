@@ -19,13 +19,15 @@ public class Event {
     private Long id;
 
     @NotBlank
+    @Column(nullable = false)
     private String name;
 
     @NotNull
     @Column(name = "total_capacity", nullable = false)
     private Long totalCapacity;
 
-    @Column(name = "available_capacity")
+    @NotNull
+    @Column(name = "available_capacity", nullable = false)
     private Long availableCapacity;
 
     @NotNull
