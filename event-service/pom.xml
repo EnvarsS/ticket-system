@@ -11,8 +11,8 @@
     <groupId>org.envycorp</groupId>
     <artifactId>event-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>inventory-service</name>
-    <description>inventory-service</description>
+    <name>event-service</name>
+    <description>event-service</description>
     <url/>
     <licenses>
         <license/>
@@ -46,6 +46,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
+
 
         <dependency>
             <groupId>com.mysql</groupId>
