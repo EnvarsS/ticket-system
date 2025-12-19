@@ -3,8 +3,10 @@ target/
 *.class
 
 # IntelliJ
-.idea/
+event-service/.idea/
 *.iml
+.gitignore
+.idea
 
 # Maven
 .mvn/
