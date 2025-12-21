@@ -13,5 +13,21 @@ services:
     volumes:
       - events_data:/var/lib/mysql
 
+  venue-db:
+    image: mysql:latest
+    container_name: venue-db
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=venue_password
+      - MYSQL_USER=venue_user
+      - MYSQL_DATABASE=venue_db
+      - MYSQL_PASSWORD=venue_password
+    ports:
+      - "3307:3306"
+    volumes:
+      - venue_data:/var/lib/mysql
+
+
 volumes:
     events_data:
+    venue_data:
