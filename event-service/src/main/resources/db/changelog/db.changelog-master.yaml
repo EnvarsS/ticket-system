@@ -3,3 +3,7 @@ databaseChangeLog:
       file: db/changelog/changes/001-create-event-table.sql
   - include:
       file: db/changelog/changes/002-insert-event-table.sql
+  - include:
+      file: db/changelog/changes/003-add-price-event-table.sql
+  - include:
+      file: db/changelog/changes/004-fill-price-event-table.sql
