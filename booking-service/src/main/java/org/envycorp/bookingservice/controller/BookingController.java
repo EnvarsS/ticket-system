@@ -1,16 +1,19 @@
 package org.envycorp.bookingservice.controller;
 
+import feign.Client;
 import org.envycorp.bookingservice.model.dto.BookingRequestDTO;
 import org.envycorp.bookingservice.model.dto.BookingResponseDTO;
 import org.envycorp.bookingservice.service.BookingService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RestController("/bookings")
+@RestController
+@RequestMapping("/bookings")
 public class BookingController {
     private final BookingService bookingService;
 
@@ -19,7 +22,9 @@ public class BookingController {
     }
 
     @PostMapping
-    public ResponseEntity<BookingResponseDTO> createBooking(@RequestBody BookingRequestDTO bookingRequestDTO) {
+    public ResponseEntity<BookingResponseDTO> createBooking(
+            @Validated({Client.Default.class})
+            @RequestBody BookingRequestDTO bookingRequestDTO) {
         return new ResponseEntity<>(bookingService.createBooking(bookingRequestDTO), HttpStatus.CREATED);
     }
 }
