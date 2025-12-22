@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.envycorp.userservice.model.enumerated.Role;
 
 @Data
 @AllArgsConstructor
@@ -25,7 +26,6 @@ public class User {
     @Column(unique = true)
     private String email;
 
-    @NotNull
-    @Column
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 }
