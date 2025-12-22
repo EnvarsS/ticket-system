@@ -26,4 +26,8 @@ public class EventController {
     public ResponseEntity<EventResponseDTO> getEvent(@PathVariable Long id) {
         return new ResponseEntity<>(eventService.getEvent(id), HttpStatus.OK);
     }
+    @GetMapping("/{id}/capacity")
+    public ResponseEntity<Long> getEventCapacity(@PathVariable Long id) {
+        return new ResponseEntity<>(eventService.getEventCapacity(id), HttpStatus.OK);
+    }
 }

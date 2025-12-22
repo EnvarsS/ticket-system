@@ -27,4 +27,8 @@ public class EventService {
 
         return EventMapper.toDTO(event);
     }
+
+    public Long getEventCapacity(Long id) {
+        return eventRepository.findById(id).orElseThrow(() -> new EventNotFoundException("Not found event with id " + id)).getAvailableCapacity();
+    }
 }
