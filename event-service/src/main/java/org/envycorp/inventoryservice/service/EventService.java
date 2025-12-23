@@ -7,6 +7,7 @@ import org.envycorp.inventoryservice.model.response.EventResponseDTO;
 import org.envycorp.inventoryservice.repository.EventRepository;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -30,5 +31,9 @@ public class EventService {
 
     public Long getEventCapacity(Long id) {
         return eventRepository.findById(id).orElseThrow(() -> new EventNotFoundException("Not found event with id " + id)).getAvailableCapacity();
+    }
+
+    public BigDecimal getEventPrice(Long id) {
+        return eventRepository.findById(id).orElseThrow(() -> new EventNotFoundException("Not found event with id " + id)).getPrice();
     }
 }
