@@ -10,7 +10,6 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BookingResponseDTO {
-    private Long bookingId;
     private Long userId;
     private Long eventId;
     private Long ticketCount;

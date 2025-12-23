@@ -8,6 +8,8 @@ import org.envycorp.bookingservice.model.dto.BookingResponseDTO;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
 @Service
 public class BookingService {
     private final UserClient userClient;
@@ -25,16 +27,25 @@ public class BookingService {
             throw new IllegalArgumentException("User does not exist");
         }
 
+        BigDecimal ticketPrice = eventClient.getEventPrice(bookingRequestDTO.getUserId()).getBody();
+
+        Long ticketsCount = bookingRequestDTO.getTicketCount();
+        BigDecimal totalPrice = ticketPrice.multiply(BigDecimal.valueOf(ticketsCount));
         final BookingEvent bookingEvent = new BookingEvent(
                 bookingRequestDTO.getUserId(),
                 bookingRequestDTO.getEventId(),
                 bookingRequestDTO.getTicketCount(),
-                bookingRequestDTO.getNames()
-
+                bookingRequestDTO.getNames(),
+                totalPrice
         );
 
         kafkaTemplate.send("booking", bookingEvent);
 
-        return new BookingResponseDTO();
+        return new BookingResponseDTO(
+                bookingRequestDTO.getUserId(),
+                bookingRequestDTO.getEventId(),
+                bookingRequestDTO.getTicketCount(),
+                totalPrice
+        );
     }
 }
