@@ -1,6 +1,6 @@
 package org.envycorp.bookingservice.controller;
 
-import feign.Client;
+import jakarta.validation.groups.Default;
 import org.envycorp.bookingservice.model.dto.BookingRequestDTO;
 import org.envycorp.bookingservice.model.dto.BookingResponseDTO;
 import org.envycorp.bookingservice.service.BookingService;
@@ -23,7 +23,7 @@ public class BookingController {
 
     @PostMapping
     public ResponseEntity<BookingResponseDTO> createBooking(
-            @Validated({Client.Default.class})
+            @Validated({Default.class})
             @RequestBody BookingRequestDTO bookingRequestDTO) {
         return new ResponseEntity<>(bookingService.createBooking(bookingRequestDTO), HttpStatus.CREATED);
     }
