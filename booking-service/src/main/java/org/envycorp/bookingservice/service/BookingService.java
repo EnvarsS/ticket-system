@@ -18,9 +18,14 @@ public class BookingService {
 
     public BookingResponseDTO createBooking(BookingRequestDTO bookingRequestDTO) {
         if(!userClient.exists(bookingRequestDTO.getUserId())) {
+            System.out.println("User does not exist");
             throw new IllegalArgumentException("User does not exist");
         }
+        System.out.println("User exists");
 
         Integer ticketsLeft = eventClient.getEventCapacity(bookingRequestDTO.getEventId());
+        System.out.println("Tickets left: " + ticketsLeft);
+
+        return new BookingResponseDTO();
     }
 }
