@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -31,5 +32,9 @@ public class EventController {
     @GetMapping("/{id}/capacity")
     public ResponseEntity<Long> getEventCapacity(@PathVariable Long id) {
         return new ResponseEntity<>(eventService.getEventCapacity(id), HttpStatus.OK);
+    }
+    @GetMapping("/{id}/price")
+    public ResponseEntity<BigDecimal> getEventPrice(@PathVariable Long id) {
+        return new ResponseEntity<>(eventService.getEventPrice(id), HttpStatus.OK);
     }
 }
