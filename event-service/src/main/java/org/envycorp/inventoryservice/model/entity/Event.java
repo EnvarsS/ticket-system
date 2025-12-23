@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
@@ -39,4 +40,8 @@ public class Event {
     @NotNull
     @Column(name = "venue_id", nullable = false)
     private Long venueId;
+
+    @NotNull
+    @Column(nullable = false)
+    private BigDecimal price;
 }
