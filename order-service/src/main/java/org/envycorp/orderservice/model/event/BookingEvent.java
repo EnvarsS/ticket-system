@@ -1,4 +1,4 @@
-package org.envycorp.bookingservice.model.event;
+package org.envycorp.orderservice.model.event;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -41,6 +41,20 @@ services:
     volumes:
       - user_data:/var/lib/mysql
 
+  order-db:
+    image: mysql:latest
+    container_name: order-db
+    restart: always
+    environment:
+        - MYSQL_ROOT_PASSWORD=order_password
+        - MYSQL_USER=order_user
+        - MYSQL_DATABASE=order_db
+        - MYSQL_PASSWORD=order_password
+    ports:
+        - "3309:3306"
+    volumes:
+        - order_data:/var/lib/mysql
+
   zookeeper:
     image: confluentinc/cp-zookeeper:7.5.0
     hostname: zookeeper
@@ -78,20 +92,21 @@ services:
       KAFKA_CLUSTERS_BOOTSTRAPSERVERS: kafka-broker:29092
       DYNAMIC_CONFIG_ENABLED: 'true'
 
-  kafka-schema-registry:
-    image: confluentinc/cp-schema-registry:7.5.0
-    hostname: kafka-schema-registry
-    container_name: kafka-schema-registry
-    depends_on:
-      - kafka-broker
-    ports:
-      - "8083:8081"
-    environment:
-      SCHEMA_REGISTRY_HOST_NAME: kafka-schema-registry
-      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: 'kafka-broker:29092'
-      SCHEMA_REGISTRY_LISTENERS: http://kafka-schema-registry:8081
+#  kafka-schema-registry:
+#    image: confluentinc/cp-schema-registry:7.5.0
+#    hostname: kafka-schema-registry
+#    container_name: kafka-schema-registry
+#    depends_on:
+#      - kafka-broker
+#    ports:
+#      - "8083:8081"
+#    environment:
+#      SCHEMA_REGISTRY_HOST_NAME: kafka-schema-registry
+#      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: 'kafka-broker:29092'
+#      SCHEMA_REGISTRY_LISTENERS: http://kafka-schema-registry:8081
 
 volumes:
     events_data:
     venue_data:
     user_data:
+    order_data:
