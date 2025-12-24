@@ -1,11 +1,13 @@
 package org.envycorp.eventservice.service;
 
 import org.envycorp.eventservice.exception.EventNotFoundException;
+import org.envycorp.eventservice.exception.NoMoreAvailableTicketsFound;
 import org.envycorp.eventservice.mapper.EventMapper;
 import org.envycorp.eventservice.model.entity.Event;
 import org.envycorp.eventservice.model.response.EventResponseDTO;
 import org.envycorp.eventservice.repository.EventRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -35,5 +37,16 @@ public class EventService {
 
     public BigDecimal getEventPrice(Long id) {
         return eventRepository.findById(id).orElseThrow(() -> new EventNotFoundException("Not found event with id " + id)).getPrice();
+    }
+
+    @Transactional
+    public void reduceEventCapacity(Long id, Long capacity) {
+        Event event = eventRepository.findById(id).orElseThrow(() -> new EventNotFoundException("Not found event with id " + id));
+        if (event.getAvailableCapacity() < capacity) {
+            throw new NoMoreAvailableTicketsFound("There are no more available tickets for event");
+        } else{
+            event.setAvailableCapacity(event.getAvailableCapacity() - capacity);
+            eventRepository.save(event);
+        }
     }
 }

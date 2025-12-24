@@ -13,4 +13,9 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String, String>> handleEventNotFoundException(EventNotFoundException ex) {
         return new ResponseEntity<>(Map.of("error", ex.getMessage()), HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(NoMoreAvailableTicketsFound.class)
+    public ResponseEntity<Map<String, String>> handleNoMoreAvailableTicketsFound(NoMoreAvailableTicketsFound ex) {
+        return new ResponseEntity<>(Map.of("error", ex.getMessage()), HttpStatus.BAD_REQUEST);
+    }
 }
