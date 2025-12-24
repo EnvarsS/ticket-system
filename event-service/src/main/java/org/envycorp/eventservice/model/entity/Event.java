@@ -1,4 +1,4 @@
-package org.envycorp.inventoryservice.model.entity;
+package org.envycorp.eventservice.model.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;

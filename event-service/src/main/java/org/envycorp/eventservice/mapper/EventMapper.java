@@ -1,7 +1,7 @@
-package org.envycorp.inventoryservice.mapper;
+package org.envycorp.eventservice.mapper;
 
-import org.envycorp.inventoryservice.model.entity.Event;
-import org.envycorp.inventoryservice.model.response.EventResponseDTO;
+import org.envycorp.eventservice.model.entity.Event;
+import org.envycorp.eventservice.model.response.EventResponseDTO;
 
 public class EventMapper {
     public static EventResponseDTO toDTO(Event event) {

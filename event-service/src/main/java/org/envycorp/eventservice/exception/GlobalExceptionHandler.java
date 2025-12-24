@@ -1,4 +1,4 @@
-package org.envycorp.inventoryservice.exception;
+package org.envycorp.eventservice.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
