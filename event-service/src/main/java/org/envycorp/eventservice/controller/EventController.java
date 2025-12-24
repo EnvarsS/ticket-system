@@ -4,16 +4,13 @@ import org.envycorp.eventservice.model.response.EventResponseDTO;
 import org.envycorp.eventservice.service.EventService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
-@RequestMapping("events")
+@RequestMapping("/events")
 public class EventController {
     private final EventService eventService;
 
@@ -36,5 +33,10 @@ public class EventController {
     @GetMapping("/{id}/price")
     public ResponseEntity<BigDecimal> getEventPrice(@PathVariable Long id) {
         return new ResponseEntity<>(eventService.getEventPrice(id), HttpStatus.OK);
+    }
+    @PutMapping("/{id}/capacity/{capacity}")
+    public ResponseEntity reduceEventCapacity(@PathVariable Long id, @PathVariable Long capacity){
+        eventService.reduceEventCapacity(id, capacity);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
