@@ -1,10 +1,8 @@
-package org.envycorp.inventoryservice.model.response;
+package org.envycorp.eventservice.model.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor

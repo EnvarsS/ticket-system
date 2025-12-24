@@ -1,6 +1,6 @@
-package org.envycorp.inventoryservice.repository;
+package org.envycorp.eventservice.repository;
 
-import org.envycorp.inventoryservice.model.entity.Event;
+import org.envycorp.eventservice.model.entity.Event;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface EventRepository extends JpaRepository<Event,Long> {

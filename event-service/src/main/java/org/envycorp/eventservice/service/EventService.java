@@ -1,11 +1,11 @@
-package org.envycorp.inventoryservice.service;
+package org.envycorp.eventservice.service;
 
-import org.envycorp.inventoryservice.exception.EventNotFoundException;
-import org.envycorp.inventoryservice.exception.NoMoreAvailableTicketsFound;
-import org.envycorp.inventoryservice.mapper.EventMapper;
-import org.envycorp.inventoryservice.model.entity.Event;
-import org.envycorp.inventoryservice.model.response.EventResponseDTO;
-import org.envycorp.inventoryservice.repository.EventRepository;
+import org.envycorp.eventservice.exception.EventNotFoundException;
+import org.envycorp.eventservice.exception.NoMoreAvailableTicketsFound;
+import org.envycorp.eventservice.mapper.EventMapper;
+import org.envycorp.eventservice.model.entity.Event;
+import org.envycorp.eventservice.model.response.EventResponseDTO;
+import org.envycorp.eventservice.repository.EventRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
