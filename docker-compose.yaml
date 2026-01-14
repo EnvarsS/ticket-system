@@ -55,6 +55,20 @@ services:
     volumes:
         - order_data:/var/lib/mysql
 
+  ticket-db:
+    image: mysql:latest
+    container_name: ticket-db
+    restart: always
+    environment:
+        - MYSQL_ROOT_PASSWORD=ticket_password
+        - MYSQL_USER=ticket_user
+        - MYSQL_DATABASE=ticket_db
+        - MYSQL_PASSWORD=ticket_password
+    ports:
+        - "3310:3306"
+    volumes:
+        - ticket_data:/var/lib/mysql
+
   zookeeper:
     image: confluentinc/cp-zookeeper:7.5.0
     hostname: zookeeper
@@ -80,17 +94,17 @@ services:
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-broker:29092,PLAINTEXT_HOST://localhost:9092
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
-  kafka-ui:
-    container_name: kafka-ui
-    image: provectuslabs/kafka-ui:latest
-    ports:
-      - "8084:8080"
-    depends_on:
-      - kafka-broker
-    environment:
-      KAFKA_CLUSTERS_NAME: local
-      KAFKA_CLUSTERS_BOOTSTRAPSERVERS: kafka-broker:29092
-      DYNAMIC_CONFIG_ENABLED: 'true'
+#  kafka-ui:
+#    container_name: kafka-ui
+#    image: provectuslabs/kafka-ui:latest
+#    ports:
+#      - "8084:8080"
+#    depends_on:
+#      - kafka-broker
+#    environment:
+#      KAFKA_CLUSTERS_NAME: local
+#      KAFKA_CLUSTERS_BOOTSTRAPSERVERS: kafka-broker:29092
+#      DYNAMIC_CONFIG_ENABLED: 'true'
 
 #  kafka-schema-registry:
 #    image: confluentinc/cp-schema-registry:7.5.0
@@ -110,3 +124,4 @@ volumes:
     venue_data:
     user_data:
     order_data:
+    ticket_data:
